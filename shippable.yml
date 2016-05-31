@@ -17,5 +17,5 @@ build:
 
 integrations:
   hub:
-    - integrationName: "stephECR"
+    - integrationName: stephECR
       type: ecr

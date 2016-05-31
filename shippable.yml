@@ -1,15 +1,22 @@
 language: php
 
 php: 
-  - 5.4
+  - 5.5
 
-env:
-  global:
-    - CLEARDB_DATABASE_URL=mysql://shippable@127.0.0.1:3306/test?reconnect=true
-    - secure: MRuHkLbL9HPkJPU5lzkKM1+NOq1S5RrhxEyhJkk60xxYiF7DMzydiBN8oFBjWrSmyGeGRuEC22a0I5ItobdWVszfcJCaXHwtfKzfGOUdKuyCnDgvojXhv/jrBvULyLK6zsLw3b8NMxdnwNsHqSPm19qW/EIGEl9Zv/637Igos69z9aT7+xrEG013+6HtKYb8RHm+iPSNsFoBi/RSAHYuM1eLTZWG2WAkjgzZaYmrHCgNwVmk+HOGR+TOWN7Iu5lrjyvC1XDCQrOvo1hZI30cd9OqJ5aadFm3exQpNhI4I7AgOnCbK3NoWNc/GAnqKXCvsaIQ80Jd/uLIOVyMjD6Xmg==
+pre_ci_boot:
+    image_name: 003199252576.dkr.ecr.us-west-2.amazonaws.com/php:5.5
+    image_tag: latest
+    pull: true
+    options: "-e HOME=/home"
+
 build:
   ci:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
   - mysql -e 'create database if not exists test;'
   - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage test.php
+
+integrations:
+    hub:
+      - integrationName: "stephECR"
+        type: ecr

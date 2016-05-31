@@ -5,15 +5,16 @@ php:
 
 build:
   pre_ci_boot:
-    image_name: 003199252576.dkr.ecr.us-west-2.amazonaws.com/php
+    image_name: 003199252576.dkr.ecr.us-east-1.amazonaws.com/php
+    # image_name: 003199252576.dkr.ecr.us-west-2.amazonaws.com/php
     image_tag: 5.5
     pull: true
     options: "-e HOME=/home"
   ci:
-  - mkdir -p shippable/testresults
-  - mkdir -p shippable/codecoverage
-  - mysql -e 'create database if not exists test;'
-  - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage test.php
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    - mysql -e 'create database if not exists test;'
+    - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage test.php
 
 integrations:
   hub:

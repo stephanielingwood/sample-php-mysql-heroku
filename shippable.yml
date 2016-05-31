@@ -20,3 +20,4 @@ integrations:
   hub:
     - integrationName: stephECR
       type: ecr
+      # region: us-west-2

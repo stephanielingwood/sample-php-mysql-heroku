@@ -3,7 +3,7 @@ language: php
 php: 
   - 5.5
 
-build
+build:
   pre_ci_boot:
     image_name: 003199252576.dkr.ecr.us-west-2.amazonaws.com/php
     image_tag: 5.5

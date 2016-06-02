@@ -3,13 +3,14 @@ language: php
 php: 
   - 5.4
 
-env:
-  global:
-    - CLEARDB_DATABASE_URL=mysql://shippable@127.0.0.1:3306/test?reconnect=true
-    - secure: MRuHkLbL9HPkJPU5lzkKM1+NOq1S5RrhxEyhJkk60xxYiF7DMzydiBN8oFBjWrSmyGeGRuEC22a0I5ItobdWVszfcJCaXHwtfKzfGOUdKuyCnDgvojXhv/jrBvULyLK6zsLw3b8NMxdnwNsHqSPm19qW/EIGEl9Zv/637Igos69z9aT7+xrEG013+6HtKYb8RHm+iPSNsFoBi/RSAHYuM1eLTZWG2WAkjgzZaYmrHCgNwVmk+HOGR+TOWN7Iu5lrjyvC1XDCQrOvo1hZI30cd9OqJ5aadFm3exQpNhI4I7AgOnCbK3NoWNc/GAnqKXCvsaIQ80Jd/uLIOVyMjD6Xmg==
 build:
   ci:
-  - mkdir -p shippable/testresults
-  - mkdir -p shippable/codecoverage
-  - mysql -e 'create database if not exists test;'
-  - phpunit --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage test.php
+    - apt-get update && apt-get install libpq-dev php5-pgsql
+    #- echo "extension=pdo_pgsql.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - find / -name pgo_pgsql.so
+    - EXTENSION=$(find / -name pgsql.so)
+    - echo $EXTENSION
+    - echo "extension=$EXTENSION" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - phpenv rehash
+    - cat /root/.phpenv/versions/5.6/etc/php.ini
+    - php -m

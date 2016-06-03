@@ -5,14 +5,15 @@ php:
 
 build:
   ci:
+    - apt-get remove php5-dev
+    - apt-get autoremove
+    - apt-get install php5-dev
     - apt-get update && apt-get install libpq-dev php5-pgsql
     #- echo "extension=pdo_pgsql.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - locate php-config
     - find / -name pgo_pgsql.so
     - EXTENSION=$(find / -name pgsql.so)
     - echo $EXTENSION
     - echo "extension=$EXTENSION" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv rehash
-    - ls -la /root/.phpenv/versions/5.6/etc/
     - cat /root/.phpenv/versions/5.6/etc/php.ini
     - php -m

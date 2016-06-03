@@ -7,7 +7,7 @@ build:
   ci:
     - apt-get remove php5-dev
     - apt-get autoremove
-    - apt-get install php5-dev
+    - apt-get update && apt-get install php5-dev
     - apt-get update && apt-get install libpq-dev php5-pgsql
     #- echo "extension=pdo_pgsql.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - find / -name pgo_pgsql.so

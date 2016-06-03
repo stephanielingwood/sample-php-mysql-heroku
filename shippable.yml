@@ -7,6 +7,7 @@ build:
   ci:
     - apt-get update && apt-get install libpq-dev php5-pgsql
     #- echo "extension=pdo_pgsql.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - locate php-config
     - find / -name pgo_pgsql.so
     - EXTENSION=$(find / -name pgsql.so)
     - echo $EXTENSION

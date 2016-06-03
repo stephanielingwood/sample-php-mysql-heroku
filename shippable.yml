@@ -12,5 +12,6 @@ build:
     - echo $EXTENSION
     - echo "extension=$EXTENSION" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv rehash
+    - ls -la ./
     - cat /root/.phpenv/versions/5.6/etc/php.ini
     - php -m
